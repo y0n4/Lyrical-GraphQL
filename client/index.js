@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ApolloClient from 'apollo-client'; // interacts with graphql server on backend (makes request)
-import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider } from 'react-apollo'; // bond server to react
+
 import SongList from './components/SongList';
 
 const client = new ApolloClient({});
