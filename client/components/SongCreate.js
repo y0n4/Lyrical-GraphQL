@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -19,7 +19,7 @@ class SongCreate extends Component {
       variables: {
         title: this.state.title
       }
-    });
+    }).then(() => { hashHistory.push('/') }) // takes user back to songList component
   }
 
   render() {
