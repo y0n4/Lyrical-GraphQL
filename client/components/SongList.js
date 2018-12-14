@@ -6,14 +6,20 @@ import { graphql } from 'react-apollo';
 import query from '../queries/fetchSongs'
 
 class SongList extends Component {
+
+  deleteSong(id) { // delete song when trash icon is clicked
+    this.props.mutate({ variable: { id } })
+  }
+
   renderSongs() { // renders all songs into a list form
-    return this.props.data.songs.map(song => {
+    return this.props.data.songs.map(({ id, title }) => {
       return(
-        <li key={song.id} className="collection-item">
-          {song.title}
+        <li key={id} className="collection-item">
+          {title}
           <i 
             className="material-icons" 
             style={{float: "right"}}
+            onClick={() => this.deleteSong(id)}
           >
             delete_outline
           </i>
