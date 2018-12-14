@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -18,13 +19,18 @@ class SongCreate extends Component {
       variables: {
         title: this.state.title
       }
-    })
+    });
   }
 
   render() {
     return (
       <div>
-        <h1>Create new song</h1>
+        <Link
+          to="/"
+        >
+          <i className="material-icons">arrow_back_ios</i>
+        </Link>
+        <h3>Create new song</h3>
         <form onSubmit={this.onSubmit.bind(this)}>
           <label>Song Title:</label>
           <input onChange={event => this.setState({title: event.target.value})} value={this.state.title}/>
