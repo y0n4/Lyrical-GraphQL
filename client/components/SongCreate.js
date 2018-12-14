@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link, hashHistory } from 'react-router';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import query from '../queries/fetchSongs'
 
 class SongCreate extends Component {
   constructor(props) {
@@ -11,14 +12,13 @@ class SongCreate extends Component {
      }
   }
 
-  // makes graphql to save the song title to database when submitted
+  // makes graphql save the song title to database when submitted
   onSubmit(event) {
     event.preventDefault(); // prevents form to submit itself
     
     this.props.mutate({
-      variables: {
-        title: this.state.title
-      }
+      variables: { title: this.state.title },
+      refetchQueries: [{ query }] // immediately refetches info and new song
     }).then(() => { hashHistory.push('/') }) // takes user back to songList component
   }
 
