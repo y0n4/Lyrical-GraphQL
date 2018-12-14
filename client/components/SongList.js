@@ -11,6 +11,12 @@ class SongList extends Component {
       return(
         <li key={song.id} className="collection-item">
           {song.title}
+          <i 
+            className="material-icons" 
+            style={{float: "right"}}
+          >
+            delete_outline
+          </i>
         </li>
       );
     });
