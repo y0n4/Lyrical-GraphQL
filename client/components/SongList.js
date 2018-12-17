@@ -7,10 +7,9 @@ import query from '../queries/fetchSongs'
 
 class SongList extends Component {
   onSongDelete(id) { // delete song when trash icon is clicked
-    console.log(id);
     this.props.mutate({
       variables: { id }
-    })
+    }).then(() => this.props.data.refetch()); // graphql tag from apollo library which refetch query immediately
   }
 
   renderSongs() { // renders all songs into a list form
