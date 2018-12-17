@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router';
 import fetchSongDetail from '../queries/fetchSongDetail';
+import LyricCreate from './LyricCreate';
 
 class SongDetail extends Component {
   render() {
@@ -9,13 +10,14 @@ class SongDetail extends Component {
     if (!song) { return <div>Loading...</div> } // while retrieving info
     
     return (
-      <div>
+      <div>  
         <Link
           to="/"
         >
           <i className="material-icons">arrow_back_ios</i>
         </Link>
         <h3>{song.title}</h3>
+        <LyricCreate />
       </div>
     )
   }
