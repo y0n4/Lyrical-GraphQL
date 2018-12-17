@@ -6,9 +6,11 @@ import { graphql } from 'react-apollo';
 import query from '../queries/fetchSongs'
 
 class SongList extends Component {
-
-  deleteSong(id) { // delete song when trash icon is clicked
-    this.props.mutate({ variable: { id } })
+  onSongDelete(id) { // delete song when trash icon is clicked
+    console.log(id);
+    this.props.mutate({
+      variables: { id }
+    })
   }
 
   renderSongs() { // renders all songs into a list form
@@ -17,9 +19,9 @@ class SongList extends Component {
         <li key={id} className="collection-item">
           {title}
           <i 
-            className="material-icons" 
+            className="material-icons"
             style={{float: "right"}}
-            onClick={() => this.deleteSong(id)}
+            onClick={() => this.onSongDelete(id)}
           >
             delete_outline
           </i>
@@ -47,14 +49,14 @@ class SongList extends Component {
 }
 
 const mutation = gql`
-  mutation DeleteSong($id:ID) {
-  deleteSong(id: $id) {
-    id
-    title
+  mutation DeleteSong($id: ID) {
+    deleteSong(id: $id) {
+      id
+      title
+    }
   }
-}
 `;
 
 export default graphql(mutation) (
   graphql(query)(SongList)
-) // calls query first then renders SongList component
+); // calls query first then renders SongList component
