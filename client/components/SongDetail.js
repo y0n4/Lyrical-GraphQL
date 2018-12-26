@@ -11,13 +11,11 @@ class SongDetail extends Component {
     
     return (
       <div>  
-        <Link
-          to="/"
-        >
+        <Link to="/">
           <i className="material-icons">arrow_back_ios</i>
         </Link>
         <h3>{song.title}</h3>
-        <LyricCreate />
+        <LyricCreate songId={this.props.params.id} />
       </div>
     )
   }
@@ -25,5 +23,5 @@ class SongDetail extends Component {
 
 export default graphql(fetchSongDetail, {
   options: (props) => {
-    return { variables: { id: props.params.id } } }
+    return { variables: { id: props.params.id }} }
 })(SongDetail);
