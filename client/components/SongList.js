@@ -21,7 +21,6 @@ class SongList extends Component {
           </Link>
           <i 
             className="material-icons"
-            // style={{float: "right"}}
             onClick={() => this.onSongDelete(id)}
           >
             delete_outline
