@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import gql from 'graphql-tag';
+import gql from 'graphql-tag'; // write grapqhl as javascript
+import { graphql } from 'react-apollo'; // allows us to write query and use into component
 
 class LyricCreate extends Component {
   constructor(props) {
@@ -11,6 +12,13 @@ class LyricCreate extends Component {
 
   onSubmit(event) {
     event.preventDefault();
+
+    this.props.mutate({
+      variables: {
+        content: this.state.content,
+        songId: this.props.songId
+      }
+    }).then(() => this.setState({content: ''})); // clears input at end
   }
 
   render() {
@@ -37,4 +45,4 @@ const mutation = gql`
   }
 `;
 
-export default LyricCreate;
+export default graphql(mutation)(LyricCreate);
